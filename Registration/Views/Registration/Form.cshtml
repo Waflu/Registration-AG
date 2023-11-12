@@ -1,0 +1,22 @@
+﻿@model Registrations
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+@using (Html.BeginForm("Form", "Registration", FormMethod.Post))
+{
+    @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+    <p>Twoje imie: @Html.TextBoxFor(a => a.Imie)</p>
+    <p>Twoje nazwisko: @Html.TextBoxFor(a => a.Nazwisko)</p>
+    <p>Twoje email: @Html.TextBoxFor(a => a.Email)</p>
+    <p>Podaj hasło: @Html.EditorFor(a => a.Password, new { htmlAttributes = new { @type = "password" } })</p>
+    <p>Potwierdz hasło: @Html.EditorFor(a => a.ConfirmPassword, new { htmlAttributes = new { @type = "password" } })</p>
+    @Html.ValidationMessageFor(a => a.ConfirmPassword) <!-- Validation message for ConfirmPassword -->
+    <p>Podaj numer telefonu: @Html.TextBoxFor(a => a.PhoneNumber)</p>
+    <p>Podaj wiek: @Html.TextBoxFor(a => a.Age)</p>
+    <p>Podaj miasto: @Html.DropDownListFor(a => a.Miasto, new SelectList(Enum.GetValues(typeof(Miasta))))</p>
+
+    <input type="submit" />
+    <input type="reset" />
+}
